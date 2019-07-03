@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="mary">
+        <createTable tableName="system_users">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean" defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="mary">
+        <sql>
+            INSERT INTO `system_users` (`id`, `username`, `active`)
+                                VALUES (1, 'administrator', 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="3" author="mary">
+        <sql>
+            INSERT INTO `system_users` (`id`, `username`, `active`)
+                                VALUES (2, 'moderator', 1);
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="mary">
+        <sql>
+            UPDATE `system_users` SET `username`='admin' WHERE `id`=1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="5" author="mary">
+        <sql>
+            CREATE TABLE `cities` (
+            id int NOT NULL PRIMARY KEY,
+            city varchar(20) NOT NULL)
+        </sql>
+    </changeSet>
+
+    <changeSet id="6" author="mary">
+        <sql>
+            INSERT INTO `cities` (`id`, `city`)
+                        VALUES (1, 'Minsk');
+        </sql>
+    </changeSet>
+
+    <changeSet id="7" author="mary">
+        <sql>
+            ALTER TABLE `system_users` ADD COLUMN City int;
+        </sql>
+    </changeSet>
+
+    <changeSet id="8" author="mary">
+        <sql>
+            UPDATE `system_users` SET `City`=1 WHERE `id`=1;
+        </sql>
+    </changeSet>
+
+    <changeSet id="9" author="mary">
+        <sql>
+            UPDATE `system_users` SET `City`=1 WHERE `id`=2;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>
