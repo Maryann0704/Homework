@@ -71,4 +71,10 @@
         </sql>
     </changeSet>
 
+    <changeSet id="10" author="mary">
+        <sql>
+            ALTER TABLE `system_users` ADD COLUMN `dateofbirth` long;
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
