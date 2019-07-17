@@ -21,14 +21,14 @@
     <changeSet id="2" author="mary">
         <sql>
             INSERT INTO `system_users` (`id`, `username`, `active`)
-                                VALUES (1, 'administrator', 1);
+            VALUES (1, 'administrator', 1);
         </sql>
     </changeSet>
 
     <changeSet id="3" author="mary">
         <sql>
             INSERT INTO `system_users` (`id`, `username`, `active`)
-                                VALUES (2, 'moderator', 1);
+            VALUES (2, 'moderator', 1);
         </sql>
     </changeSet>
 
@@ -40,40 +40,33 @@
 
     <changeSet id="5" author="mary">
         <sql>
-            CREATE TABLE `cities` (
-            id int NOT NULL PRIMARY KEY,
-            city varchar(20) NOT NULL)
+            CREATE TABLE `clients` (
+            `client_id` INT NOT NULL,
+            `first_name` VARCHAR(50),
+            `second_name` VARCHAR(50),
+            `date_of_birth` TIMESTAMP,
+            `male_female` CHAR(1),
+            `e-mail` VARCHAR(50));
         </sql>
     </changeSet>
 
     <changeSet id="6" author="mary">
         <sql>
-            INSERT INTO `cities` (`id`, `city`)
-                        VALUES (1, 'Minsk');
+            CREATE TABLE `products` (
+            `product_id` INT NOT NULL,
+            `product_name` VARCHAR(250),
+            `price` DOUBLE(10,2),
+            `exists` boolean);
         </sql>
     </changeSet>
 
     <changeSet id="7" author="mary">
         <sql>
-            ALTER TABLE `system_users` ADD COLUMN City int;
-        </sql>
-    </changeSet>
-
-    <changeSet id="8" author="mary">
-        <sql>
-            UPDATE `system_users` SET `City`=1 WHERE `id`=1;
-        </sql>
-    </changeSet>
-
-    <changeSet id="9" author="mary">
-        <sql>
-            UPDATE `system_users` SET `City`=1 WHERE `id`=2;
-        </sql>
-    </changeSet>
-
-    <changeSet id="10" author="mary">
-        <sql>
-            ALTER TABLE `system_users` ADD COLUMN `dateofbirth` long;
+            CREATE TABLE `orders` (
+            `order_id` INT NOT NULL,
+            `client_id` INT NOT NULL,
+            `product_id` INT NOT NULL,
+            `number` INT unsigned NOT NULL);
         </sql>
     </changeSet>
 

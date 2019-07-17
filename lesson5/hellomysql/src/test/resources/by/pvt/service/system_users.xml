@@ -1,0 +1,8 @@
+<dataset>
+
+    <system_users id="13" username="guest1" active="true"/>
+    <system_users id="14" username="guest2" active="false"/>
+    <system_users id="15" username="guest3" active="false"/>
+    <system_users id="16" username="guest4" active="true"/>
+
+</dataset>

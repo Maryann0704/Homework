@@ -1,8 +1,0 @@
-<dataset>
-
-    <system_users id="3" username="guest1" active="true" city="1"/>
-    <system_users id="4" username="guest2" active="false" city="1"/>
-    <system_users id="5" username="guest3" active="false" city="1"/>
-    <system_users id="6" username="guest4" active="true" city="1"/>
-
-</dataset>

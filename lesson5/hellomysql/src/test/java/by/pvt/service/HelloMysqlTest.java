@@ -1,10 +1,9 @@
-package by.pvt;
+package by.pvt.service;
 
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.junit.Assert;
 import org.junit.Test;
 import java.sql.*;
 
@@ -45,22 +44,10 @@ public class HelloMysqlTest extends DBTestCase{
 
                 ResultSet resultSet = ps.executeQuery();
          ){
-            int rowCount = 0;
-            int activeUser = 0;
-            while (resultSet.next()){
-                rowCount++;
-                if (resultSet.getBoolean("active"))
-                    activeUser++;
-            }
-            Assert.assertEquals(4, rowCount);
-            Assert.assertEquals(2, activeUser);
-
-            Assert.assertNotNull(resultSet);
+            assertNotNull(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
-
 }
