@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SystemUsersService {
+
+class SystemUsersService {
 
     private static Logger log = Logger.getLogger(SystemUsersService.class.getName());
 
@@ -26,31 +27,27 @@ public class SystemUsersService {
         }
     }
 
-    public List<SystemUsers> getSystemUsers() {
+    List<SystemUsers> getSystemUsers() {
         return sqlSessionFactory
                 .openSession()
                 .getMapper(SystemUsersMapper.class)
                 .selectByExample(null);
     }
 
-    public void insertSystemUser(SystemUsers systemUser){
-        SqlSession session = sqlSessionFactory.openSession();
+    void insertSystemUser(SystemUsers systemUser){
+        SqlSession session = sqlSessionFactory.openSession(true);
         session.getMapper(SystemUsersMapper.class).insert(systemUser);
-        session.commit();
-        session.close();
     }
 
-    public void updateSystemUser(SystemUsers systemUser) {
-        SqlSession session = sqlSessionFactory.openSession();
-        session.getMapper(SystemUsersMapper.class).updateByPrimaryKey(systemUser);
-        session.commit();
-        session.close();
+    int updateSystemUser(SystemUsers systemUser) {
+       return sqlSessionFactory
+                .openSession(true)
+                .getMapper(SystemUsersMapper.class)
+                .updateByPrimaryKey(systemUser);
     }
 
-    public void deleteSystemUser(int id) {
-        SqlSession session = sqlSessionFactory.openSession();
+    void deleteSystemUser(int id) {
+        SqlSession session = sqlSessionFactory.openSession(true);
         session.getMapper(SystemUsersMapper.class).deleteByPrimaryKey(id);
-        session.commit();
-        session.close();
     }
 }

@@ -6,9 +6,11 @@ import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.List;
 
 
 public class SystemUsersServiceTest extends DBTestCase {
@@ -35,116 +37,49 @@ public class SystemUsersServiceTest extends DBTestCase {
     }
 
     private SystemUsers systemUser = new SystemUsers();
-
-    @Test
-    public void testGet() {
-        try (Connection connection =
-                     DriverManager.getConnection(
-                             "jdbc:mysql://localhost:3306/hello_mysql_junit"
-                             , "root"
-                             , "root");
-             PreparedStatement ps = connection.
-                     prepareStatement("select * from system_users");
-             ResultSet rs = ps.executeQuery()
-        ) {
-            new SystemUsersService().getSystemUsers();
-
-            int users = 0;
-            while (rs.next()) {
-                users++;
-            }
-            assertEquals(4, users);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    private SystemUsersService service = new SystemUsersService();
+    private Logger logger = LoggerFactory.getLogger(SystemUsersServiceTest.class.getName());
 
     @Test
     public void testInsert() {
+        systemUser.setId(5);
+        systemUser.setUsername("User57");
+        systemUser.setActive(false);
 
-        try (Connection connection =
-                     DriverManager.getConnection(
-                             "jdbc:mysql://localhost:3306/hello_mysql_junit"
-                             , "root"
-                             , "root")
-        ) {
-            systemUser.setId(5);
-            systemUser.setUsername("User57");
-            systemUser.setActive(false);
+        service.insertSystemUser(systemUser);
+        List<SystemUsers> systemUsers = service.getSystemUsers();
 
-            new SystemUsersService().insertSystemUser(systemUser);
+        assertEquals(5, systemUsers.size());
 
-            PreparedStatement ps = connection.
-                    prepareStatement("select * from system_users where id=5");
-            ResultSet rs = ps.executeQuery();
+    }
 
-            assertEquals(5, rs.getInt("id"));
-            assertEquals("User57", rs.getString("username"));
-            assertFalse(rs.getBoolean("active"));
+    @Test
+    public void testGet() {
+        List<SystemUsers> systemUsers = service.getSystemUsers();
 
-            rs.close();
-            ps.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        assertEquals(4, systemUsers.size());
     }
 
     @Test
     public void testUpdate() {
+        systemUser.setId(17);
+        systemUser.setUsername("Denis");
+        systemUser.setActive(true);
 
-        try (Connection connection =
-                     DriverManager.getConnection(
-                             "jdbc:mysql://localhost:3306/hello_mysql_junit"
-                             , "root"
-                             , "root")
-        ) {
-            systemUser.setUsername("Denis");
-            systemUser.setActive(true);
+        service.insertSystemUser(systemUser);
+        systemUser.setUsername("Alex");
 
-            new SystemUsersService().updateSystemUser(systemUser);
+        int result = service.updateSystemUser(systemUser);
 
-            PreparedStatement ps = connection.
-                    prepareStatement("select * from system_users where id=5");
-            ResultSet rs = ps.executeQuery();
-
-            assertEquals("Denis", rs.getString("username"));
-            assertTrue(rs.getBoolean("active"));
-
-            rs.close();
-            ps.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        assertEquals(1, result);
 
     }
 
     @Test
     public void testDelete() {
+        service.deleteSystemUser(16);
+        List<SystemUsers> systemUsers = service.getSystemUsers();
 
-        try (Connection connection =
-                     DriverManager.getConnection(
-                             "jdbc:mysql://localhost:3306/hello_mysql_junit"
-                             , "root"
-                             , "root");
-             PreparedStatement ps = connection.
-                     prepareStatement("select * from system_users");
-             ResultSet rs = ps.executeQuery()
-
-        ) {
-            new SystemUsersService().deleteSystemUser(5);
-
-            AtomicInteger numberUsers = new AtomicInteger();
-            while (rs.next()){
-                numberUsers.getAndIncrement();
-            }
-
-            assertEquals(4, numberUsers.get());
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        assertEquals(3, systemUsers.size());
     }
 }

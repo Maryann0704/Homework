@@ -41,8 +41,7 @@ public class HelloMysqlTest extends DBTestCase{
                                 ,"root");
 
                 PreparedStatement ps = connection.prepareStatement("select * from system_users");
-
-                ResultSet resultSet = ps.executeQuery();
+                ResultSet resultSet = ps.executeQuery()
          ){
             assertNotNull(resultSet);
 
