@@ -6,10 +6,7 @@ import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.sql.*;
 import java.util.List;
 
 
@@ -38,7 +35,6 @@ public class SystemUsersServiceTest extends DBTestCase {
 
     private SystemUsers systemUser = new SystemUsers();
     private SystemUsersService service = new SystemUsersService();
-    private Logger logger = LoggerFactory.getLogger(SystemUsersServiceTest.class.getName());
 
     @Test
     public void testInsert() {
