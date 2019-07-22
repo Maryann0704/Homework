@@ -7,6 +7,7 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,6 +36,12 @@ public class SystemUsersServiceTest extends DBTestCase {
 
     private SystemUsersService service = new SystemUsersService(true);
     private SystemUsers systemUser = new SystemUsers();
+    private static List<SystemUsers> users = new ArrayList<>();
+    static {
+        users.add(new SystemUsers(18, "Glen", false));
+        users.add(new SystemUsers(19, "Dennis", true));
+        users.add(new SystemUsers(20, "Helena", true));
+    }
 
     @Test
     public void testInsert() {
@@ -81,5 +88,9 @@ public class SystemUsersServiceTest extends DBTestCase {
 
     @Test
     public void testAddAll() {
+        service.addAll(users);
+        List<SystemUsers> allUsers = service.getSystemUsers();
+
+        assertEquals(7, allUsers.size());
     }
 }
