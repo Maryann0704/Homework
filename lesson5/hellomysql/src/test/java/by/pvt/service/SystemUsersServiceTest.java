@@ -33,8 +33,8 @@ public class SystemUsersServiceTest extends DBTestCase {
                 SystemUsersServiceTest.class.getResourceAsStream("system_users.xml"));
     }
 
+    private SystemUsersService service = new SystemUsersService(true);
     private SystemUsers systemUser = new SystemUsers();
-    private SystemUsersService service = new SystemUsersService();
 
     @Test
     public void testInsert() {
@@ -77,5 +77,9 @@ public class SystemUsersServiceTest extends DBTestCase {
         List<SystemUsers> systemUsers = service.getSystemUsers();
 
         assertEquals(3, systemUsers.size());
+    }
+
+    @Test
+    public void testAddAll() {
     }
 }

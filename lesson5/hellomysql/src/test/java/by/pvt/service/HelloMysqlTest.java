@@ -4,6 +4,7 @@ import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.Test;
 import java.sql.*;
 
@@ -28,6 +29,11 @@ public class HelloMysqlTest extends DBTestCase{
     protected IDataSet getDataSet() throws Exception {
         return new FlatXmlDataSetBuilder().build(
                 HelloMysqlTest.class.getResourceAsStream("system_users.xml"));
+    }
+
+    @Override
+    protected DatabaseOperation getTearDownOperation() throws Exception {
+        return DatabaseOperation.DELETE;
     }
 
     @Test
