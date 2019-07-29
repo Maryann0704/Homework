@@ -9,7 +9,7 @@
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.connection.pool_size">20</property>
-        <property name="hibernate.hbm2ddl.auto">validate</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
         <mapping class="by.pvt.pojo.Person"/>
     </session-factory>
