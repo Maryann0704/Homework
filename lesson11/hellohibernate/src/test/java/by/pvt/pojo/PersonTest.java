@@ -25,8 +25,7 @@ public class PersonTest {
 
             session = HibernateUtil.getInstance().getSession();
             tx = session.beginTransaction();
-            List<Person> personList =
-                    session.createQuery("from person").list();
+            List<Person> personList = session.createQuery("from person").list();
             assertEquals(1, personList.size());
             Person p2 = personList.get(0);
             assertEquals(person, p2);
@@ -38,8 +37,6 @@ public class PersonTest {
             Person loadedPerson = session.get(Person.class, 1);
             assertEquals(person, loadedPerson);
             tx.commit();
-
-
 
         } catch (Exception e) {
             if (tx != null) tx.rollback();
