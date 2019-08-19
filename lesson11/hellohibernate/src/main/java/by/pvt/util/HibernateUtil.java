@@ -7,7 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
 
-    private static volatile HibernateUtil hibernateUtil;
+    private static HibernateUtil hibernateUtil;
 
     private SessionFactory sessionFactory;
 

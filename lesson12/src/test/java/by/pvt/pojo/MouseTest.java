@@ -26,6 +26,7 @@ public class MouseTest {
         if (data == null) {
             session.save(this.mouse);
             tx.commit();
+            session.close();
         }
     }
 

@@ -4,9 +4,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity(name = "person")
 public class Person implements Serializable {
@@ -14,7 +16,6 @@ public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GenericGenerator(name = "id", strategy = "increment")
     private int id;
 
     @Column
