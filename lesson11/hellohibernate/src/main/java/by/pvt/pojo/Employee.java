@@ -69,7 +69,6 @@ public class Employee implements Serializable {
     }
 
     public void addProject(Project project) {
-        //project.addEmployee(this);
         if (projects == null) projects = new ArrayList<>();
         projects.add(project);
     }

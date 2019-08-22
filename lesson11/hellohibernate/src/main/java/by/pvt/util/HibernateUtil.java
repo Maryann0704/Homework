@@ -7,9 +7,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class HibernateUtil {
 
-    private static HibernateUtil hibernateUtil;
+    private static volatile HibernateUtil hibernateUtil;
 
     private SessionFactory sessionFactory;
+
+    private SessionFactory testSessionFactory;
 
     private HibernateUtil() {
         sessionFactory =
@@ -18,10 +20,11 @@ public class HibernateUtil {
                                 .configure()
                                 .build()
                 ).buildMetadata().buildSessionFactory();
-    }
 
-    public Session getSession() {
-        return sessionFactory.openSession();
+        testSessionFactory = new MetadataSources(
+                new StandardServiceRegistryBuilder()
+                        .configure("hibernate.cfg.test.xml")
+                        .build()).buildMetadata().buildSessionFactory();
     }
 
     public static synchronized HibernateUtil getInstance() {
@@ -31,5 +34,11 @@ public class HibernateUtil {
         return hibernateUtil;
     }
 
+    public Session getSession() {
+        return sessionFactory.openSession();
+    }
 
+    public Session getTestSession() {
+        return testSessionFactory.openSession();
+    }
 }
