@@ -1,0 +1,34 @@
+package by.pvt;
+
+import by.pvt.dto.SystemUsers;
+import by.pvt.service.SystemUsersService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(value="/helloWorld", name="helloWorldServlet")
+public class HelloWorldServlet extends HttpServlet {
+
+    public SystemUsersService systemUsersService;
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        resp.setStatus(200);
+        resp.setHeader("Content-Type", "application/json");
+        List<SystemUsers> users = systemUsersService.getSystemUsers(null);
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(users);
+        System.out.println("JSON output: " + json);
+        //resp.getWriter().print("{\"message\": \"hello, world!\"}");
+        resp.getWriter().print(json);
+    }
+
+}
