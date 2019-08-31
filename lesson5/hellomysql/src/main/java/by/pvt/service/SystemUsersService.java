@@ -2,6 +2,7 @@ package by.pvt.service;
 
 import by.pvt.dao.SystemUsersMapper;
 import by.pvt.dto.SystemUsers;
+import by.pvt.dto.SystemUsersExample;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 
@@ -22,16 +23,17 @@ public class SystemUsersService {
         if (forTest){
             try {
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(
-                        Resources.getResourceAsStream("by/pvt/service/mybatis-config-junit.xml")
+                        //Resources.getResourceAsStream("by/pvt/service/mybatis-config-junit.xml")
+                        SystemUsersService.class.getResourceAsStream("mybatis-config-junit.xml")
                 );
-            } catch (IOException e) {
+            } catch (Exception e) {
                 log.log(Level.SEVERE, e.getMessage(), e);
             }
         }
         else {
             try {
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(
-                        Resources.getResourceAsStream("by/pvt/service/mybatis-config.xml")
+                        SystemUsersService.class.getResourceAsStream("by/pvt/service/mybatis-config.xml")
                 );
             } catch (IOException e) {
                 log.log(Level.SEVERE, e.getMessage(), e);
@@ -40,19 +42,30 @@ public class SystemUsersService {
 
     }
 
-    public List<SystemUsers> getSystemUsers() {
-        return sqlSessionFactory
-                .openSession()
-                .getMapper(SystemUsersMapper.class)
-                .selectByExample(null);
+    protected void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    void insertSystemUser(SystemUsers systemUser){
+    public List<SystemUsers> getSystemUsers() {
+        return getSystemUsers(null);
+    }
+
+    public List<SystemUsers> getSystemUsers(SystemUsersExample example) {
+        SqlSession session = sqlSessionFactory.openSession();
+        SystemUsersMapper mapper = session.getMapper(SystemUsersMapper.class);
+
+        List<SystemUsers> dtoUsers = mapper.selectByExample(example);
+
+        session.close();
+        return dtoUsers;
+    }
+
+    public void insertSystemUser(SystemUsers systemUser){
         SqlSession session = sqlSessionFactory.openSession(true);
         session.getMapper(SystemUsersMapper.class).insert(systemUser);
     }
 
-    void addAll(List<SystemUsers> systemUsers) {
+    public void addAll(List<SystemUsers> systemUsers) {
         if(systemUsers == null){
             log.info("The input systemUsers is null");
             return;
@@ -77,14 +90,14 @@ public class SystemUsersService {
         session.close();
     }
 
-    int updateSystemUser(SystemUsers systemUser) {
+    public int updateSystemUser(SystemUsers systemUser) {
        return sqlSessionFactory
                 .openSession(true)
                 .getMapper(SystemUsersMapper.class)
                 .updateByPrimaryKey(systemUser);
     }
 
-    void deleteSystemUser(int id) {
+    public void deleteSystemUser(int id) {
         SqlSession session = sqlSessionFactory.openSession(true);
         session.getMapper(SystemUsersMapper.class).deleteByPrimaryKey(id);
     }
