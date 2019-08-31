@@ -8,9 +8,9 @@ public class SendMessageCmd {
 
     public final MessageType messageType;
 
-    public final String channel;
+    public final Enum channel;
 
-    public SendMessageCmd(String receiverName, MessageType messageType, String channel) {
+    public SendMessageCmd(String receiverName, MessageType messageType, Enum channel) {
         this.receiverName = receiverName;
         this.messageType = messageType;
         this.channel = channel;

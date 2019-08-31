@@ -1,7 +1,7 @@
 package by.pvt.main;
 
 import by.pvt.cmd.SendMessageCmd;
-import by.pvt.component.EmailSender;
+import by.pvt.component.Channel;
 import by.pvt.service.MessageService;
 import by.pvt.service.MessageType;
 import org.springframework.context.ApplicationContext;
@@ -29,7 +29,7 @@ public class Main {
                 new SendMessageCmd(
                         "user@mail.ru",
                         MessageType.INVITATION_MESSAGE,
-                        EmailSender.EMAIL_CHANNEL
+                        Channel.EMAIL
                 )
         );
     }
