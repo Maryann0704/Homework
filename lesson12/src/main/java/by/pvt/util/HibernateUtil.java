@@ -5,31 +5,23 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class HibernateUtil {
 
-    private static volatile HibernateUtil hibernateUtil;
+    private static final EntityManagerFactory emFactory;
 
-    private SessionFactory sessionFactory;
-
-    private HibernateUtil() {
-        sessionFactory =
-                new MetadataSources(
-                        new StandardServiceRegistryBuilder()
-                                .configure()
-                                .build()
-                ).buildMetadata().buildSessionFactory();
+    static {
+        emFactory = Persistence.createEntityManagerFactory("by.pvt");
     }
 
-    public Session getSession() {
-        return sessionFactory.openSession();
+    public static EntityManager getEntityManager() {
+        return emFactory.createEntityManager();
     }
 
-    public static synchronized HibernateUtil getInstance() {
-        if (hibernateUtil == null) {
-            hibernateUtil = new HibernateUtil();
-        }
-        return hibernateUtil;
+    public static void close() {
+        emFactory.close();
     }
-
-
 }
