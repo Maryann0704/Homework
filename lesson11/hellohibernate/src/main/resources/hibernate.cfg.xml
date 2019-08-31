@@ -7,10 +7,16 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hello_hibernate?createDatabaseIfNotExist=true&amp;useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
-        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.connection.isolation">2</property>
         <property name="hibernate.connection.pool_size">20</property>
+        <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
 
+        <!--&lt;!&ndash; Cache configuration! &ndash;&gt;
+        <property name="cache.provider_class">org.hibernate.cache.EhCacheProvider</property>
+        <property name="cache.use_query_cache">true</property>
+        <property name="cache.use_second_level_cache">true</property>
+-->
         <mapping class="by.pvt.pojo.Person"/>
         <mapping class="by.pvt.pojo.Employee"/>
         <mapping class="by.pvt.pojo.EmployeeDetails"/>

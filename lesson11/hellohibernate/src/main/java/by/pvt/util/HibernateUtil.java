@@ -14,17 +14,17 @@ public class HibernateUtil {
     private SessionFactory testSessionFactory;
 
     private HibernateUtil() {
-        sessionFactory =
-                new MetadataSources(
-                        new StandardServiceRegistryBuilder()
-                                .configure()
-                                .build()
-                ).buildMetadata().buildSessionFactory();
+        sessionFactory = new MetadataSources(
+                new StandardServiceRegistryBuilder()
+                        .configure()
+                        .build()
+        ).buildMetadata().buildSessionFactory();
 
         testSessionFactory = new MetadataSources(
                 new StandardServiceRegistryBuilder()
                         .configure("hibernate.cfg.test.xml")
-                        .build()).buildMetadata().buildSessionFactory();
+                        .build()
+        ).buildMetadata().buildSessionFactory();
     }
 
     public static synchronized HibernateUtil getInstance() {

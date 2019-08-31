@@ -3,6 +3,7 @@ package by.pvt.repository;
 import by.pvt.pojo.Employee;
 import by.pvt.pojo.EmployeeDetails;
 import by.pvt.util.HibernateUtil;
+import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
@@ -11,9 +12,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
-
-public class EmployeeRepositoryTest extends BaseDbUnitTest {
+public class EmployeeRepositoryTest extends DBTestCase {
 
     private Session testSession;
 
