@@ -1,0 +1,16 @@
+*.class
+
+.idea
+
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+
+
+
+/lesson4/
+/lesson5/
+/lesson7/
+/lesson8/
