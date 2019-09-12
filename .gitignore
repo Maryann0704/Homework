@@ -1,9 +1,8 @@
 *.class
 
 .idea
+.target
 
-*.jar
-*.war
 *.ear
 *.iml
 *.log
