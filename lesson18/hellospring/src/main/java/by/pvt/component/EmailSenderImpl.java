@@ -3,7 +3,7 @@ package by.pvt.component;
 import by.pvt.pojo.Message;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("myEmailSender")
 public class EmailSenderImpl implements EmailSender {
 
     @Override
