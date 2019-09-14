@@ -1,18 +1,18 @@
 package by.pvt;
 
-import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/welcome")
 public class WelcomeController {
 
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public String welcome(Model model) {
-        model.addAttribute("username", "Java Developer");
+        model.addAttribute("username",
+                "Junior");
         return "welcome";
     }
 

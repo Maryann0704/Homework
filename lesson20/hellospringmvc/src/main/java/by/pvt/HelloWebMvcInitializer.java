@@ -11,7 +11,6 @@ import java.util.Set;
 
 public class HelloWebMvcInitializer implements ServletContainerInitializer {
 
-    @Override
     public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
 
         AnnotationConfigWebApplicationContext context =
