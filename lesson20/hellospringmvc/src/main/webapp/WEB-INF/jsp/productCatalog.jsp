@@ -3,7 +3,7 @@
 
 <h1>Product catalog!</h1>
 
-<table class="table">
+<table class="table table-striped table-info">
     <thead>
         <tr>
           <th scope="col">#</th>
