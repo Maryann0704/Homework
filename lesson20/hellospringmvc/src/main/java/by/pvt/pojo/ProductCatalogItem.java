@@ -1,6 +1,10 @@
 package by.pvt.pojo;
 
-public class ProductCatalogItem {
+import javax.persistence.Entity;
+import java.io.Serializable;
+
+@Entity
+public class ProductCatalogItem implements Serializable {
 
     private Long id;
     private String itemName;
