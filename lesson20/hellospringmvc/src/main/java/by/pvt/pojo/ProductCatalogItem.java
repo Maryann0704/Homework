@@ -1,14 +1,28 @@
 package by.pvt.pojo;
 
-import javax.persistence.Entity;
+import org.hibernate.type.descriptor.sql.LobTypeMappings;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.logging.Logger;
 
 @Entity
+@SequenceGenerator(name = "catalog_item_seq")
 public class ProductCatalogItem implements Serializable {
 
+    @Transient
+    private static Logger log = Logger.getLogger("ProductCatalogItem");
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "catalog_item_seq")
     private Long id;
+    @Column
     private String itemName;
+    @Column
     private Double price;
+    @Column
+    @Lob
     private byte[] productImage;
 
     public ProductCatalogItem() {
@@ -59,5 +73,27 @@ public class ProductCatalogItem implements Serializable {
                 ", itemName='" + itemName + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ProductCatalogItem that = (ProductCatalogItem) o;
+
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (itemName != null ? !itemName.equals(that.itemName) : that.itemName != null) return false;
+        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        return Arrays.equals(productImage, that.productImage);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (itemName != null ? itemName.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + Arrays.hashCode(productImage);
+        return result;
     }
 }
