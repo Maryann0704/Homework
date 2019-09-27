@@ -35,14 +35,6 @@ public class ProductCatalogService {
                 item.getItemName() == null || item.getItemName().isEmpty()) {
             return false;
         }
-        /*if (item.getId() == null) {
-            item.setId(generateProductItemId());
-        }*/
         return productCatalogRepository.add(item);
     }
-
-    /*private Long generateProductItemId() {
-        Long maxId = productCatalogRepository.getMaxId();
-        return ++maxId;
-    }*/
 }

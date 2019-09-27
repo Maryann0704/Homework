@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp"/>
 
+    <div class="container">
     <table class="table table-striped table-success">
         <thead>
             <tr>
@@ -19,5 +20,6 @@
         </c:forEach>
         </tbody>
     </table>
+    </div>
 
 <jsp:include page="footer.jsp"/>

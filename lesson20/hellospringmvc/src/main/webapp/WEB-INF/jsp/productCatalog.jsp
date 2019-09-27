@@ -1,8 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp"/>
 
-<h1>Product catalog!</h1>
-
+<div class="container">
+<h2>Product catalog!</h2>
+<br>
 <table class="table table-striped table-info">
     <thead>
         <tr>
@@ -21,5 +22,6 @@
     </c:forEach>
     </tbody>
 </table>
+</div>
 
 <jsp:include page="footer.jsp"/>

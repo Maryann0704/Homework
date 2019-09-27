@@ -1,6 +1,8 @@
 <jsp:include page="header.jsp"/>
 
-    <h1>Hello, ${username}!</h1>
+<div class="container">
+    <h2>Hello, ${username}!</h2>
+</div>
 
 <jsp:include page="footer.jsp"/>
 

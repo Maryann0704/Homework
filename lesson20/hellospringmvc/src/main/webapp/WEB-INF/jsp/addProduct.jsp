@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="header.jsp"/>
 
+<div class="container">
 <form method="POST" action="${pageContext.request.contextPath}/add-product" enctype="multipart/form-data">
   <div class="form-group">
     <label for="exampleInputEmail1">Product name</label>
@@ -17,5 +18,6 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 
 <jsp:include page="footer.jsp"/>
