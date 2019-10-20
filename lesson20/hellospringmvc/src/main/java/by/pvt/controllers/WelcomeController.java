@@ -1,4 +1,4 @@
-package by.pvt;
+package by.pvt.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

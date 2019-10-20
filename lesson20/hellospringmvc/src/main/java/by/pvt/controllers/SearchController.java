@@ -1,4 +1,4 @@
-package by.pvt;
+package by.pvt.controllers;
 
 import by.pvt.pojo.ProductCatalogItem;
 import by.pvt.service.ProductCatalogService;

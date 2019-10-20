@@ -1,3 +1,4 @@
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
     <meta charset="utf-8">
@@ -15,12 +16,23 @@
   <li class="nav-item">
     <a class="nav-link" href="${pageContext.request.contextPath}/product-catalog">Product Catalog</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="${pageContext.request.contextPath}/add-product">Add Product</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="my-orders" tabindex="-1" aria-disabled="true">My orders</a>
-  </li>
+     <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/add-product">Add Product</a>
+    </li>
+  <sec:authorize access="!isAuthenticated()">
+    <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/registration">Registration</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
+    </li>
+  </sec:authorize>
+  <sec:authorize access="isAuthenticated()">
+    <li class="nav-item">
+      <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+    </li>
+  </sec:authorize>
+
 </ul>
 <form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/search">
 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search-str">
