@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,7 @@ public class AppUser {
     private String email;
     private String password;
 
-    @OneToMany
-    private Set<AppRole> appRoles;
+    @ManyToMany
+    private List<AppRole> appRoles;
 
 }

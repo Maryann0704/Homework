@@ -1,7 +1,6 @@
 package by.pvt.repository;
 
 import by.pvt.pojo.AppUser;
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,7 +16,9 @@ public class AppUserRepository {
     private SessionFactory sessionFactory;
 
     public void save(AppUser user) {
+        log.info("Save user: " + user);
         sessionFactory.getCurrentSession().save(user);
+
     }
 
     public AppUser findUserByEmail(String email) {

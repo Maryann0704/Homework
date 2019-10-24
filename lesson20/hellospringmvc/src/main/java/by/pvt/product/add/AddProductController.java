@@ -3,6 +3,7 @@ package by.pvt.product.add;
 import by.pvt.pojo.ProductCatalogItem;
 import by.pvt.service.ProductCatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class AddProductController {
             BindingResult result
     ) throws IOException {
         log.info("Call submitAddProductForm: " + item);
+        log.info("Principal: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
         log.info("File: " + file);
         item.setProductImage(file.getBytes());

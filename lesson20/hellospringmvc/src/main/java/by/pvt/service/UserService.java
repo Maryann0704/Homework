@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -29,6 +30,7 @@ public class UserService {
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public boolean saveUser(AppUser user) {
+        log.info("Saving user = "+user);
         if (user == null || user.getFirstName().isEmpty()
                 || user.getLastName().isEmpty() || user.getEmail().isEmpty()
                 || user.getPassword().isEmpty() ||
@@ -43,7 +45,7 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         log.info("Encoded password: "+encodedPassword);
         user.setPassword(encodedPassword);
-        user.setAppRoles(Set.of(userRole));
+        user.setAppRoles(List.of(userRole));
         userRepository.save(user);
         return true;
     }
