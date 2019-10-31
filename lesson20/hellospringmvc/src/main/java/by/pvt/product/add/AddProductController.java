@@ -13,13 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-
 @Controller
 @RequestMapping("/add-product")
 public class AddProductController {
 
     private static Logger log = Logger.getLogger("addProductController");
 
+    @Autowired
+    ProductCatalogItemValidator validator;
 
     @Autowired
     private
@@ -34,10 +35,14 @@ public class AddProductController {
 
     @PostMapping
     public String submitAddProductForm(
-            @ModelAttribute ProductCatalogItem item,
+            @ModelAttribute ("item") ProductCatalogItem item,
             @RequestParam("file") MultipartFile file,
             BindingResult result
     ) throws IOException {
+        validator.validate(item, result);
+        if (result.hasErrors()) {
+            return "addProduct";
+        }
         log.info("Call submitAddProductForm: " + item);
         log.info("Principal: " + SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
@@ -45,7 +50,7 @@ public class AddProductController {
         item.setProductImage(file.getBytes());
         //saveToFile(file);
 
-        if (!productCatalogService.addItem(item) || result.hasErrors()) {
+        if (!productCatalogService.addItem(item)) {
             return "addProductError";
         }
         return "addProductOk";
