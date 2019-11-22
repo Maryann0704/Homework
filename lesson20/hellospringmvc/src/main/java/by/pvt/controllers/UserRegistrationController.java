@@ -29,7 +29,7 @@ public class UserRegistrationController {
         if (userService.saveUser(user)) {
             return "redirect:/login";
         } else
-            return "error";
+            return "registration";
     }
 
 }

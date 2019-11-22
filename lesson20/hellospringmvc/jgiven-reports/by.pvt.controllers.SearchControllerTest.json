@@ -1,0 +1,179 @@
+{
+  "className": "by.pvt.controllers.SearchControllerTest",
+  "name": "Search Controller",
+  "scenarios": [
+    {
+      "className": "by.pvt.controllers.SearchControllerTest",
+      "testMethodName": "searchWithParam",
+      "description": "Search with param",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "user enter correct search string",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "user enter correct search string"
+                },
+                {
+                  "value": "test",
+                  "argumentInfo": {
+                    "argumentName": "searchStr",
+                    "formattedValue": "test"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 14980100
+            },
+            {
+              "name": "execute search",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "execute search"
+                },
+                {
+                  "value": "org.springframework.test.web.servlet.MockMvc@21698e5a",
+                  "argumentInfo": {
+                    "argumentName": "mockMvc",
+                    "formattedValue": "org.springframework.test.web.servlet.MockMvc@21698e5a"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 316034200
+            },
+            {
+              "name": "result size is",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "result size is"
+                },
+                {
+                  "value": "2",
+                  "argumentInfo": {
+                    "argumentName": "size",
+                    "formattedValue": "2"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1195200
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "success": true,
+          "durationInNanos": 639393700
+        }
+      ],
+      "durationInNanos": 639393700,
+      "executionStatus": "SUCCESS"
+    },
+    {
+      "className": "by.pvt.controllers.SearchControllerTest",
+      "testMethodName": "search",
+      "description": "Search",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "user enter empty search string",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "user enter empty search string"
+                },
+                {
+                  "value": "",
+                  "argumentInfo": {
+                    "argumentName": "searchStr",
+                    "formattedValue": ""
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2387400
+            },
+            {
+              "name": "execute search",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "execute search"
+                },
+                {
+                  "value": "org.springframework.test.web.servlet.MockMvc@84a9f65",
+                  "argumentInfo": {
+                    "argumentName": "mockMvc",
+                    "formattedValue": "org.springframework.test.web.servlet.MockMvc@84a9f65"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 8276900
+            },
+            {
+              "name": "result size is",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "result size is"
+                },
+                {
+                  "value": "0",
+                  "argumentInfo": {
+                    "argumentName": "size",
+                    "formattedValue": "0"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1130800
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "success": true,
+          "durationInNanos": 16111100
+        }
+      ],
+      "durationInNanos": 16111100,
+      "executionStatus": "SUCCESS"
+    }
+  ],
+  "tagMap": {}
+}

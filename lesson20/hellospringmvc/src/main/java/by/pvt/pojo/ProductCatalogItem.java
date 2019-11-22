@@ -1,7 +1,5 @@
 package by.pvt.pojo;
 
-import org.hibernate.type.descriptor.sql.LobTypeMappings;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
